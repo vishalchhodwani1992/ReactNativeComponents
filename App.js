@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity,} from 'react-native';
 import ChildComponent from './ChildComponent';
 
 export default class App extends React.Component{
@@ -8,17 +8,18 @@ export default class App extends React.Component{
     super(props)
 
     this.state = {
-      name: "Mike",
-      age: "10",
       isVisible: false,
+      name: "Mike",
+      age: 10,
     }
   }
 
-  onShow(){
+  showChildComponent(){
+    
     this.setState({isVisible: true});
   }
 
-  onHide(){
+  hideChildComponent(){
     this.setState({isVisible: false});
   }
 
@@ -33,28 +34,26 @@ export default class App extends React.Component{
   render(){
     return(
       <View>
-        <Text style={{color: 'red', fontSize: 20}}>Welcome to React Naive World</Text>
+        <Text style={{color: 'blue', fontSize: 20}}>Welcome to React Naive World</Text>
 
-        <TouchableOpacity onPress={() => this.onShow()} style={{marginTop:10, backgroundColor: 'blue', justifyContent:'center', alignItems:'center', padding: 10}}>
+        <TouchableOpacity onPress={()=> this.showChildComponent()} style={{marginTop: 10, padding: 10, backgroundColor: 'blue', justifyContent: 'center', alignItems:'center'}}>
           <Text style={{color: 'white', fontSize: 18}}>Show Child Component</Text>
         </TouchableOpacity>
 
         
-        <TouchableOpacity onPress={() => this.onHide()} style={{marginTop:10, backgroundColor: 'orange', justifyContent:'center', alignItems:'center', padding: 10}}>
+        <TouchableOpacity onPress={()=> this.hideChildComponent()} style={{marginTop: 10, padding: 10, backgroundColor: 'purple', justifyContent: 'center', alignItems:'center'}}>
           <Text style={{color: 'white', fontSize: 18}}>Hide Child Component</Text>
         </TouchableOpacity>
 
         
-        <TouchableOpacity onPress={() => this.changeProps()} style={{marginTop:10, backgroundColor: 'purple', justifyContent:'center', alignItems:'center', padding: 10}}>
+        <TouchableOpacity onPress={()=> this.changeProps()} style={{marginTop: 10, padding: 10, backgroundColor: 'orange', justifyContent: 'center', alignItems:'center'}}>
           <Text style={{color: 'white', fontSize: 18}}>Change Props</Text>
         </TouchableOpacity>
 
-
-      {
-        this.state.isVisible &&
-        <ChildComponent childName={this.state.name} childAge={this.state.age} /> 
-      }
-
+        {
+          this.state.isVisible &&
+          <ChildComponent childName={this.state.name} childAge={this.state.age} />
+        }
       </View>
     );
   }
